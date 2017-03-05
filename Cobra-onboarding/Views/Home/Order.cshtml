@@ -1,0 +1,93 @@
+﻿
+<div ng-app="orderApp" ng-controller="orderController" ng-cloak class="modal-demo">
+    <div><h2>Order List</h2></div>
+    <div>
+        <table>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Purchasing Date</th>
+                <th>Person</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="x in orderData">
+                <td>{{x.ProductName}}</td>
+                <td>{{x.Price}}</td>
+                <td>{{x.Date | date : yyyy-mm-dd }}</td>
+                <td>{{x.PersonName}}</td>
+                <td>
+                    <a href="" ng-click="edit(x)">Edit</a>
+                    <a href="" ng-click="delete(x)">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>
+        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                ng-click="add()">
+            Add a New Order
+        </button>
+    </p>
+
+    <script type="text/ng-template" id="orderModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">{{Title}}</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <p>
+                <label>Product Name:</label>      
+                <select ng-model="orderData.ProductName" ng-options="x.ProductName as x.ProductName for x in orderList">
+                </select>
+            </p>
+            <p>
+                <label>Price:</label>
+                <input type="text" ng-model="orderData.Price" />
+            </p>
+            <p>
+                <label>Date:</label>
+                <input type="date" format="yyyy-mm-dd" ng-model="orderData.Date"/>
+            </p>  
+           
+            <p>
+                <label>Person Name</label>
+                <select ng-model="orderData.PersonName" ng-options="x.PersonName as x.PersonName for x in orderList"></select>
+            </p>   
+        </div>
+
+        
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="save()">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+        </div>
+    </script>
+
+
+
+    <script type="text/ng-template" id="deleteModal.html">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Order Delete Confirmation</h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <p>
+                    Are you sure you want to delete the order of <b>{{orderData.ProductName}}</b> which 
+                    purchased by <b>{{orderData.PersonName}}</b>?
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="save()">Yes, delete it</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            </div>
+     </script>
+
+
+
+</div>
+
+
+
+<script src="~/App/OrderApp.js"></script>
+<link href="~/CSS/PersonStyleSheet.css" rel="stylesheet" />
+
+

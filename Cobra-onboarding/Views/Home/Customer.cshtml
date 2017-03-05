@@ -1,0 +1,81 @@
+﻿
+
+<div ng-app="customerApp" ng-controller="customerController as $ctrl" ng-cloak class="modal-demo">
+         
+    <div><h2>Customer List</h2></div>
+        <div>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Address1</th>
+                    <th>Address2</th>
+                    <th>Town/City</th>
+                    <th>Action</th>
+                </tr>
+                <tr ng-repeat="x in $ctrl.personData">
+                    <td>{{x.Name}}</td>
+                    <td>{{x.Address1}}</td>
+                    <td>{{x.Address2}}</td>
+                    <td>{{x.Town_City}}</td>
+                    <td><a href="" ng-click="$ctrl.update('lg', x)">Update</a> 
+                    <a href="" ng-click="$ctrl.delete(x)">Delete</a></td>
+                </tr>
+            </table>
+        </div>
+        <p>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" 
+                    ng-click="$ctrl.addPerson('lg')">
+                Add a New Person
+            </button>
+        </p>
+    
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">{{$ctrl.customerTitle}}</h3>
+          
+        </div>
+        <div class="modal-body" id="modal-body" >
+            <p>
+                <label>Name:</label>
+                <select ng-model="$ctrl.personData.Name" ng-options="x.Name as x.Name for x in $ctrl.personList"></select>
+            </p>
+            <p>
+                <label>Address1:</label>
+                <input type="text" ng-model="$ctrl.personData.Address1"/>
+            </p>
+            <p>
+                <label>Address2:</label>
+                <input type="text" ng-model="$ctrl.personData.Address2" />
+            </p>
+            <p>
+                <label>Town/City</label>
+                <input type="text" ng-model="$ctrl.personData.Town_City" />
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.save()">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Close</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="deleteCusModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">{{Title}}</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <p>
+                Are you sure you want to delete all the data of <b>{{name}}</b>?
+            </p>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.save()">Yes, delete it</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+</div>
+
+
+<script src="~/App/CustomerApp.js"></script>
+<link href="~/CSS/PersonStyleSheet.css" rel="stylesheet" />

@@ -1,0 +1,29 @@
+﻿
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .full button span {
+             background-color: limegreen;
+             border-radius: 32px;
+             color: black;
+        }
+        .partially button span {
+             background-color: orange;
+             border-radius: 32px;
+             color: black;
+        }
+
+
